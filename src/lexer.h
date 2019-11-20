@@ -2,30 +2,28 @@
 #define LEXER_H
 
 #include "commandEnum.h"
-#include "vector"
+#include <vector>
+#include <string>
 
-class Lexer{
-    public:
-    static Lexer* instance();
+class Lexer
+{
+public:
+    static Lexer *instance();
 
-    void processInput();
+    std::vector<std::string> processInput(const std::string &input, const char token);
     void printHistory();
-    void addCommand();
+    const bool addCommand(const Command c);
     void resetHistory();
 
-    private:
-    Lexer(){}
-    Lexer(Lexer&){}
-    Lexer& operator=(const Lexer&){}
+private:
+    Lexer() {}
+    Lexer(Lexer &) {}
+    Lexer &operator=(const Lexer &) {}
 
-   static Lexer* instancePtr;
+    static Lexer *instancePtr;
 
     Command lastCommand;
     std::vector<Command> commandHistory;
-
-
-
 };
-
 
 #endif
