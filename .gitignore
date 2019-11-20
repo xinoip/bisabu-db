@@ -9,6 +9,10 @@
 *.out
 *.app
 
+#vscode
+
+.vscode/
+
 #all files without extension
 *
 !*.*
