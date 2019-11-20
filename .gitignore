@@ -9,7 +9,11 @@
 *.out
 *.app
 
+#all files without extension
 *
 !*.*
 !*/
-*/.vscode
+
+#not makefiles
+!*makefile
+!*Makefile
