@@ -1,4 +1,4 @@
-#include "Prompt.h"
+#include "prompt.h"
 
 Prompt* Prompt::instancePtr = nullptr;
 
