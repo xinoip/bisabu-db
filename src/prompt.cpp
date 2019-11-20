@@ -1,4 +1,5 @@
-#include "Prompt.h"
+#include <iostream>
+#include "prompt.h"
 
 Prompt* Prompt::instancePtr = nullptr;
 
@@ -9,4 +10,15 @@ Prompt* Prompt::instance(){
 
     return instancePtr;
 }
-
+void Prompt::print() {
+    std::cout << status << " : " << text << "\n";
+    std::cout << ">";
+}
+void Prompt::getInput()
+{
+    std::cin >> status >> text;
+}
+void Prompt::sendInput()
+{
+    
+}

@@ -5,6 +5,8 @@
 
 class Prompt{
     public:
+    Prompt(){}
+    Prompt(Prompt& ){}
     static Prompt* instance();
     
     void print();
@@ -12,13 +14,12 @@ class Prompt{
     void sendInput();
 
     private:
-    Prompt(){}
-    Prompt(Prompt& ){}
+    
     Prompt& operator=(const Prompt&){}
     static Prompt* instancePtr;
 
-    std::string text;
-    std::string status;
+    std::string text = "text"; //temp string
+    std::string status = "status";//temp string
     std::string lastInput;
 
 };
