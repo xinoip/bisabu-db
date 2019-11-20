@@ -12,7 +12,7 @@ public:
 
     std::vector<std::string> processInput(const std::string &input, const char token);
     void printHistory();
-    void addCommand();
+    const bool addCommand(const Command c);
     void resetHistory();
 
 private:
