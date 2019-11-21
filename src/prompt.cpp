@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 #include "prompt.h"
+#include "lexer.h"
 
 Prompt* Prompt::instancePtr = nullptr;
 
@@ -11,14 +13,15 @@ Prompt* Prompt::instance(){
     return instancePtr;
 }
 void Prompt::print() {
-    std::cout << status << " : " << text << "\n";
+    std::cout << "status : text\n";
     std::cout << ">";
 }
 void Prompt::getInput()
 {
-    std::cin >> status >> text;
+    getline(std::cin,lastInput);
 }
-void Prompt::sendInput()
-{
-    
+std::string Prompt::sendInput()
+{   
+    Lexer::instance()->pushInput(lastInput);
+    return lastInput;
 }

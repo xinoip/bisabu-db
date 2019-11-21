@@ -74,6 +74,11 @@ const bool Lexer::addCommand(const Command c){
     return true;
 }
 
+void Lexer::pushInput(std::string string) { //new added pushInput() 
+
+    return; 
+}
+
 //#define TEST //remove to compile with test main.
 
 #ifdef TEST
