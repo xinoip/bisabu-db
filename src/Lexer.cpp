@@ -119,7 +119,6 @@ std::string Lexer::convertCharPtr(const char *input)
 }
 
 //#define TEST //uncomment to compile with test main.
-
 #ifdef TEST
 
 int main()
