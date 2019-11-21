@@ -1,5 +1,5 @@
 #include <iostream>
-#include "prompt.h"
+#include "Prompt.h"
 
 Prompt* Prompt::instancePtr = nullptr;
 

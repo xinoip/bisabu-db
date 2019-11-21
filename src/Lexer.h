@@ -1,7 +1,7 @@
 #ifndef _Lexer_h_
 #define _Lexer_h_
 
-#include "commandEnum.h"
+#include "CommandEnum.h"
 #include <vector>
 #include <string>
 
