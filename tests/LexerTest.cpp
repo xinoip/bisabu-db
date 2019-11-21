@@ -17,9 +17,40 @@ Test LexerTest()
         if(l == NULL)
             return false;
 
+        std::string longString(10000,'a');
+        v = l->Lexer::processInput(longString, 'a');
+        if(v.size() != 10000)
+            success = false;
+        
         v = l->Lexer::processInput("Burakcan Asa", ' ');
         if(v.size() != 2)
-            success = false;    
+            success = false;
+        std::cout << "***************" << std::endl;
+        
+        v = l->Lexer::processInput("Burakcan Asa", 'e');
+        if(v.size() != 0){
+            // should enter error message
+            success = false;
+        }
+        std::cout << "***************" << std::endl;
+        
+        v = l->Lexer::processInput("Öküz Sümük", 'ü');
+        //problem with turkish characters
+        std::cout << "***************" << std::endl;
+        
+        v = l->Lexer::processInput("abbc", 'b');
+        std::cout << v.size();
+        if(v.size() != 2){
+            success = false;
+            // problem in consecutive chars, it creates 3 substrings
+        }
+
+        //////////////////////////////////////
+        // PROCESSINPUT FUNCTION TESTS DONE //
+        //////////////////////////////////////
+
+
+
         return success;
     }, "LexerTest");
 }
