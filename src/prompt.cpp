@@ -19,6 +19,9 @@ void Prompt::print() {
 void Prompt::getInput()
 {
     getline(std::cin,lastInput);
+    while(lastInput[lastInput.size()-1] == ' '){
+        lastInput.pop_back();
+    }
 }
 std::string Prompt::sendInput()
 {   
