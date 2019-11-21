@@ -31,6 +31,18 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
     return tokens;
 }
 
+std::vector<std::string> Lexer::processInput(const char *input, const char token){
+    std::string temp = "";
+
+    for(int i=0; input[i] != 0 ; ++i ){
+        temp += input[i];
+    }
+    temp += '\0';
+
+    return processInput(temp,token);
+
+}
+
 void Lexer::resetHistory()
 {
     commandHistory.clear();
@@ -74,11 +86,13 @@ const bool Lexer::addCommand(const Command c){
     return true;
 }
 
-//#define TEST //remove to compile with test main.
+//#define TEST //uncomment to compile with test main.
 
 #ifdef TEST
 
 int main(){
+
+    Lexer::instance()->processInput("Abdullah",'u');
 
     Lexer::instance()->addCommand(Command::DEL);
     Lexer::instance()->addCommand(Command::DEL);

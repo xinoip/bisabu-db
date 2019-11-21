@@ -11,6 +11,8 @@ public:
     static Lexer *instance();
 
     std::vector<std::string> processInput(const std::string &input, const char token);
+    std::vector<std::string> processInput(const char *input, const char token);
+    
     void printHistory();
     const bool addCommand(const Command c);
     void resetHistory();
