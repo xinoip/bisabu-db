@@ -1,5 +1,5 @@
-#ifndef PROMPT_H
-#define PROMPT_H
+#ifndef _Prompt_h_
+#define _Prompt_h_
 
 #include <string>
 

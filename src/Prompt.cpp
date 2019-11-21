@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "prompt.h"
-#include "lexer.h"
+#include "Prompt.h"
+#include "Lexer.h"
 
 Prompt* Prompt::instancePtr = nullptr;
 

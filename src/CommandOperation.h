@@ -1,7 +1,7 @@
-#ifndef COMMAND_OPERATION_H
-#define COMMAND_OPERATION_H
+#ifndef _Command_Operation_h_
+#define _Command_Operation_h_
 
-#include "commandEnum.h"
+#include "CommandEnum.h"
 #include <vector>
 #include <string>
 
