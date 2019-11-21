@@ -13,3 +13,4 @@ all : $(SRC)
 
 test : $(SRC) $(TESTS)
 	$(CC) $(SRC) $(TESTS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(TEST_NAME) -g
+	

@@ -1,1 +1,23 @@
 ./test
+#object files
+*.o
+*.lo
+*.obj
+
+#executables
+*.exe
+*.out
+*.app
+
+#vscode
+
+.vscode/
+
+#all files without extension
+*
+!*.*
+!*/
+
+#not makefiles
+!*makefile
+!*Makefile
