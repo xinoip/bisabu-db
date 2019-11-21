@@ -31,17 +31,34 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
     return tokens;
 }
 
-std::vector<std::string> Lexer::processInput(const char *input, const char token){
-    std::string temp = "";
+std::vector<std::string> Lexer::processInput(const char *input, const char token)
+{
 
-    for(int i=0; input[i] != 0 ; ++i ){
-        temp += input[i];
-    }
-    temp += '\0';
-
-    return processInput(temp,token);
-
+    return processInput(convertCharPtr(input), token);
 }
+
+void Lexer::processInputHistory(const char token){
+    int i = inputHistory.size() - 1;
+
+    while(!inputHistory.empty()){
+        processInput(inputHistory[i],token);
+        inputHistory.pop_back();
+        --i;
+    }
+}
+
+bool Lexer::pushInput(const std::string &input)
+{
+    inputHistory.push_back(input);
+    return true;
+}
+
+bool Lexer::pushInput(const char *input)
+{
+    inputHistory.push_back(convertCharPtr(input));
+    return true; // useless bool for now. maybe we put a limit for input count in future
+}
+
 
 void Lexer::resetHistory()
 {
@@ -51,9 +68,10 @@ void Lexer::resetHistory()
 void Lexer::printHistory()
 {
 
-    if(commandHistory.empty()){
-         std::cout << "History is empty\n";
-         return;
+    if (commandHistory.empty())
+    {
+        std::cout << "History is empty\n";
+        return;
     }
 
     for (int i = 0; i < commandHistory.size(); ++i)
@@ -81,18 +99,33 @@ void Lexer::printHistory()
     }
 }
 
-const bool Lexer::addCommand(const Command c){
+const bool Lexer::addCommand(const Command c)
+{
     commandHistory.push_back(c);
     return true;
+}
+
+std::string Lexer::convertCharPtr(const char *input)
+{
+    std::string temp = "";
+
+    for (int i = 0; input[i] != 0; ++i)
+    {
+        temp += input[i];
+    }
+    temp += '\0';
+
+    return temp;
 }
 
 //#define TEST //uncomment to compile with test main.
 
 #ifdef TEST
 
-int main(){
+int main()
+{
 
-    Lexer::instance()->processInput("Abdullah",'u');
+    Lexer::instance()->processInput("Abdullah", 'u');
 
     Lexer::instance()->addCommand(Command::DEL);
     Lexer::instance()->addCommand(Command::DEL);
