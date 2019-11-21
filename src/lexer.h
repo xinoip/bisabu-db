@@ -1,5 +1,5 @@
-#ifndef LEXER_H
-#define LEXER_H
+#ifndef _Lexer_h_
+#define _Lexer_h_
 
 #include "commandEnum.h"
 #include <vector>
