@@ -38,13 +38,13 @@ std::vector<std::string> Lexer::processInput(const char *input, const char token
 }
 
 void Lexer::processInputHistory(const char token){
-    int i = inputHistory.size() - 1;
-
-    while(!inputHistory.empty()){
+    
+    for(int i = 0;i<inputHistory.size();++i){
         processInput(inputHistory[i],token);
-        inputHistory.pop_back();
-        --i;
     }
+
+    inputHistory.clear();
+
 }
 
 bool Lexer::pushInput(const std::string &input)
