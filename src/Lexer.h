@@ -20,7 +20,6 @@ public:
     void printHistory();
     const bool addCommand(const Command c);
     void resetHistory();
-    void pushInput(std::string);
 
 private:
     Lexer() {}
