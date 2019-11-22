@@ -19,12 +19,17 @@ void Prompt::print() {
 void Prompt::getInput()
 {
     getline(std::cin,lastInput);
-    while(lastInput[lastInput.size()-1] == ' '){
-        lastInput.pop_back();
-    }
+    deleteWhitespace();             //deleting whitespaces from lastInput variable(it can be modified)
+                                    //as deleting whitespaces for any strings
 }
 std::string Prompt::sendInput()
 {   
     Lexer::instance()->pushInput(lastInput);
+    return lastInput;
+}
+const std::string Prompt::deleteWhitespace(){
+    while(lastInput[lastInput.size()-1] == ' '){
+        lastInput.pop_back();
+    }
     return lastInput;
 }

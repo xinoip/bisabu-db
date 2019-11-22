@@ -17,6 +17,7 @@ class Prompt{
     Prompt(Prompt& ){}
     Prompt& operator=(const Prompt&){}
     static Prompt* instancePtr;
+    const std::string deleteWhitespace();
 
     std::string text;
     std::string status;
