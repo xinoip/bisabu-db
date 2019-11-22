@@ -17,7 +17,7 @@ Test LexerTest()
         if(l == NULL)
             return false;
 
-        std::string longString(10000,'a');
+        std::string longString(10000000,'a');
         v = l->Lexer::processInput(longString, 'a');
         if(v.size() != 10000)
             success = false;

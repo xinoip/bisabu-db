@@ -19,7 +19,7 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
     std::stringstream parser(input);
     std::string token;
     std::vector<std::string> tokens;
-
+    
     while (getline(parser, token, tokenChar))
     {
         tokens.push_back(token);
