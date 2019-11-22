@@ -25,8 +25,9 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
         tokens.push_back(token);
     }
 
-    for (int i = 0; i < tokens.size(); ++i)
-        std::cout << tokens[i] << std::endl;
+    // this wont print anything
+    //for (int i = 0; i < tokens.size(); ++i)
+        //std::cout << tokens[i] << std::endl;
 
     return tokens;
 }
