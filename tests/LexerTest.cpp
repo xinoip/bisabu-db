@@ -9,6 +9,10 @@
 Test LexerTest()
 {
     return Test([]() {
+
+        // process input wont print anything
+        // change tests accordingly
+
         std::vector<std::string> v;
         Lexer *l = Lexer::instance();
 
