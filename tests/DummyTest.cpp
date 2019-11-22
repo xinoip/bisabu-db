@@ -12,5 +12,6 @@ Test DummyTest()
         success = true;
 
         return success;
-    }, "DummyTest");
+    },
+                "DummyTest");
 }

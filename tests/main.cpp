@@ -4,10 +4,9 @@
 int main()
 {
     Test testsArr[TEST_COUNT] = {
-   	// call tests here
-	DummyTest(),
-    LexerTest()
-    };
+        // call tests here
+        DummyTest(),
+        LexerTest()};
 
     ////////////////////
     // Don't touch below
@@ -35,7 +34,8 @@ int main()
         std::cout << "Failed " << TEST_COUNT - passedTests << " tests." << std::endl;
     }
 
-    std::cout << "\n" << std::endl;
+    std::cout << "\n"
+              << std::endl;
 
     return 0;
 }
