@@ -10,9 +10,8 @@ class Lexer
 public:
     static Lexer *instance();
 
-    // change name of these to 'tokenize input'
-    std::vector<std::string> processInput(const std::string &input, const char token);
-    std::vector<std::string> processInput(const char *input, const char token);
+    std::vector<std::string> tokenizeInput(const std::string &input, const char token);
+    std::vector<std::string> tokenizeInput(const char *input, const char token);
 
     void processInputHistory(const char token);
 
@@ -43,7 +42,7 @@ private:
     static Lexer *instancePtr;
 
     Command lastCommand;
-    std::vector<Command> commandHistory;
+    std::vector<Command> commandStream;
 
     std::string convertCharPtr(const char *input);
     std::vector<std::string> inputHistory;
