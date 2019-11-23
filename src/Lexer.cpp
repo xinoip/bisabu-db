@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-//#define TEST //uncomment to compile with test main.
+// #define TEST //uncomment to compile with test main.
 
 Lexer *Lexer::instancePtr = nullptr;
 
@@ -29,7 +29,7 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
     }
 
 #ifdef TEST
-    for (int i = 0; i < tokens.size(); ++i)
+    for (unsigned i = 0; i < tokens.size(); ++i)
         std::cout << tokens[i] << std::endl;
 #endif
 
@@ -45,7 +45,7 @@ std::vector<std::string> Lexer::processInput(const char *input, const char token
 void Lexer::processInputHistory(const char token)
 {
 
-    for (int i = 0; i < inputHistory.size(); ++i)
+    for (unsigned i = 0; i < inputHistory.size(); ++i)
     {
         processInput(inputHistory[i], token);
     }
@@ -79,7 +79,7 @@ void Lexer::printHistory()
         return;
     }
 
-    for (int i = 0; i < commandHistory.size(); ++i)
+    for (unsigned i = 0; i < commandHistory.size(); ++i)
     {
         std::cout << "Command " << i + 1 << ":";
         switch (commandHistory[i])
@@ -104,7 +104,7 @@ void Lexer::printHistory()
     }
 }
 
-const bool Lexer::addCommand(const Command c)
+bool Lexer::addCommand(const Command c)
 {
     commandHistory.push_back(c);
     return true;

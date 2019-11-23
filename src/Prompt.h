@@ -14,8 +14,8 @@ public:
 
 private:
     Prompt() {}
-    Prompt(Prompt &) {}
-    Prompt &operator=(const Prompt &) {}
+    Prompt(Prompt &);
+    Prompt &operator=(const Prompt &);
     static Prompt *instancePtr;
     const std::string deleteWhitespace();
 

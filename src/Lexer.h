@@ -18,13 +18,13 @@ public:
     bool pushInput(const char *input);
 
     void printHistory();
-    const bool addCommand(const Command c);
+    bool addCommand(const Command c);
     void resetHistory();
 
 private:
     Lexer() {}
-    Lexer(Lexer &) {}
-    Lexer &operator=(const Lexer &) {}
+    Lexer(Lexer &);
+    Lexer &operator=(const Lexer &);
 
     static Lexer *instancePtr;
 

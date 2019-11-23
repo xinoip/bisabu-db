@@ -38,7 +38,11 @@ Test LexerTest()
         }
         std::cout << "***************" << std::endl;
 
-        v = l->processInput("Öküz Sümük", 'ü');
+        // note by pion
+        // this is multi-char constant
+        // we might not need to handle this
+        // right now it has overflow so don't test it
+        //v = l->processInput("Öküz Sümük", 'ü');
         //problem with turkish characters
         std::cout << "***************" << std::endl;
 
