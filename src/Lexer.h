@@ -10,8 +10,10 @@ class Lexer
 public:
     static Lexer *instance();
 
+    // change name of these to 'tokenize input'
     std::vector<std::string> processInput(const std::string &input, const char token);
     std::vector<std::string> processInput(const char *input, const char token);
+
     void processInputHistory(const char token);
 
     bool pushInput(const std::string &input);
@@ -20,6 +22,18 @@ public:
     void printHistory();
     bool addCommand(const Command c);
     void resetHistory();
+
+    // need to implement these
+    // process and add the correct command to commandHistory
+    // for now if you add successfully just print the name of command
+    // bool processInput(std::vector<std::string> v)
+
+    // just print the name of command from commandHistory
+    // after printing pop the command from commandHistory
+    // in the future we will call command objects run method
+    // void processCommand();
+
+    // change the name of commandHistory to commandStream
 
 private:
     Lexer() {}
