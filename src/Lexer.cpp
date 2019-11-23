@@ -2,6 +2,8 @@
 #include <sstream>
 #include <iostream>
 
+//#define TEST //uncomment to compile with test main.
+
 Lexer *Lexer::instancePtr = nullptr;
 
 Lexer *Lexer::instance()
@@ -22,12 +24,14 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
 
     while (getline(parser, token, tokenChar))
     {
+        if(token!="")
         tokens.push_back(token);
     }
 
-    // this wont print anything
-    //for (int i = 0; i < tokens.size(); ++i)
-    //std::cout << tokens[i] << std::endl;
+#ifdef TEST
+    for (int i = 0; i < tokens.size(); ++i)
+        std::cout << tokens[i] << std::endl;
+#endif
 
     return tokens;
 }
@@ -119,7 +123,6 @@ std::string Lexer::convertCharPtr(const char *input)
     return temp;
 }
 
-//#define TEST //uncomment to compile with test main.
 #ifdef TEST
 
 int main()

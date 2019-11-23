@@ -9,14 +9,4 @@
 *.app
 
 #vscode
-
 .vscode/
-
-#all files without extension
-*
-!*.*
-!*/
-
-#not makefiles
-!*makefile
-!*Makefile
