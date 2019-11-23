@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-// #define TEST //uncomment to compile with test main.
+#define TEST //uncomment to compile with test main.
 
 Lexer *Lexer::instancePtr = nullptr;
 
@@ -123,7 +123,7 @@ std::string Lexer::convertCharPtr(const char *input)
     return temp;
 }
 
-#ifdef TEST
+#ifdef TESTINTERNAL
 
 int main()
 {
