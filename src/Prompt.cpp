@@ -5,33 +5,42 @@
 
 Prompt *Prompt::instancePtr = nullptr;
 
-Prompt *Prompt::instance()
+//Instance pointer returning function for provide creating
+//only one Prompt object
+Prompt *Prompt::instance()              
+                                        
 {
-    if (!instancePtr)
+    if (!instancePtr)                   
     {
         instancePtr = new Prompt;
     }
 
     return instancePtr;
 }
-void Prompt::print()
+//Print prompt
+void Prompt::print()                    
 {
     std::cout << "status : text\n";
     std::cout << ">";
 }
-void Prompt::getInput()
+//Getting last input
+void Prompt::getInput()                 
 {
     getline(std::cin, lastInput);
-    deleteWhitespace(); //deleting whitespaces from lastInput variable(it can be modified)
-                        //as deleting whitespaces for any strings
+    deleteWhitespace(); 
+                        
 }
-std::string Prompt::sendInput()
+//Sending lastInput to Lexer object
+std::string Prompt::sendInput()         
 {
     Lexer::instance()->pushInput(lastInput);
     return lastInput;
 }
-const std::string Prompt::deleteWhitespace()
-{
+
+//Deleting whitespaces from lastInput variable(it can be modified)
+//as deleting whitespaces for any strings
+const std::string Prompt::deleteWhitespace()    
+{                                               
     while (lastInput[lastInput.size() - 1] == ' ')
     {
         lastInput.pop_back();
