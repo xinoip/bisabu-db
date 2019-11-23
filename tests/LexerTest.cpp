@@ -9,7 +9,6 @@
 Test LexerTest()
 {
     return Test([]() {
-
         // process input wont print anything
         // change tests accordingly
 
@@ -50,12 +49,11 @@ Test LexerTest()
             success = false;
             // problem in consecutive chars, it creates 3 substrings
         }
-        
+
         //////////////////////////////////////
         // PROCESSINPUT FUNCTION TESTS DONE //
         //////////////////////////////////////
 
-        
         return success;
     },
                 "LexerTest");

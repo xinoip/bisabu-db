@@ -13,10 +13,13 @@ bool Test::run()
 
     result = testPtr();
 
-    std::cout << "\n - Result: ";    
-    if(result) {
+    std::cout << "\n - Result: ";
+    if (result)
+    {
         std::cout << "PASSED";
-    } else {
+    }
+    else
+    {
         std::cout << "FAILED";
     }
     std::cout << " -" << std::endl;

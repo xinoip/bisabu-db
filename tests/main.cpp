@@ -6,7 +6,8 @@ int main()
     Test testsArr[TEST_COUNT] = {
         // call tests here
         DummyTest(),
-        LexerTest()};
+        LexerTest(),
+    };
 
     ////////////////////
     // Don't touch below

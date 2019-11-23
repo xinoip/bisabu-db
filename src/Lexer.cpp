@@ -19,7 +19,7 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
     std::stringstream parser(input);
     std::string token;
     std::vector<std::string> tokens;
-    
+
     while (getline(parser, token, tokenChar))
     {
         tokens.push_back(token);
@@ -27,7 +27,7 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
 
     // this wont print anything
     //for (int i = 0; i < tokens.size(); ++i)
-        //std::cout << tokens[i] << std::endl;
+    //std::cout << tokens[i] << std::endl;
 
     return tokens;
 }
@@ -38,14 +38,15 @@ std::vector<std::string> Lexer::processInput(const char *input, const char token
     return processInput(convertCharPtr(input), token);
 }
 
-void Lexer::processInputHistory(const char token){
-    
-    for(int i = 0;i<inputHistory.size();++i){
-        processInput(inputHistory[i],token);
+void Lexer::processInputHistory(const char token)
+{
+
+    for (int i = 0; i < inputHistory.size(); ++i)
+    {
+        processInput(inputHistory[i], token);
     }
 
     inputHistory.clear();
-
 }
 
 bool Lexer::pushInput(const std::string &input)
@@ -59,7 +60,6 @@ bool Lexer::pushInput(const char *input)
     inputHistory.push_back(convertCharPtr(input));
     return true; // useless bool for now. maybe we put a limit for input count in future
 }
-
 
 void Lexer::resetHistory()
 {
