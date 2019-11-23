@@ -24,8 +24,8 @@ std::vector<std::string> Lexer::tokenizeInput(const std::string &input, const ch
 
     while (getline(parser, token, tokenChar))
     {
-        if(token!="")
-        tokens.push_back(token);
+        if (token != "")
+            tokens.push_back(token);
     }
 
 #ifdef TESTINTERNAL
@@ -82,26 +82,32 @@ void Lexer::printHistory()
     for (unsigned i = 0; i < commandStream.size(); ++i)
     {
         std::cout << "Command " << i + 1 << ":";
-        switch (commandStream[i])
-        {
-        case Command::SEL:
-            std::cout << "SELECT";
-            break;
-
-        case Command::INS:
-            std::cout << "INSERT";
-            break;
-
-        case Command::UPD:
-            std::cout << "UPDATE";
-            break;
-
-        case Command::DEL:
-            std::cout << "DELETE";
-            break;
-        }
-        std::cout << std::endl;
+        printCommand(commandStream[i]);
     }
+}
+
+void Lexer::printCommand(const Command c)
+{
+
+    switch (c)
+    {
+    case Command::SEL:
+        std::cout << "SELECT";
+        break;
+
+    case Command::INS:
+        std::cout << "INSERT";
+        break;
+
+    case Command::UPD:
+        std::cout << "UPDATE";
+        break;
+
+    case Command::DEL:
+        std::cout << "DELETE";
+        break;
+    }
+    std::cout << std::endl;
 }
 
 bool Lexer::addCommand(const Command c)
@@ -123,6 +129,16 @@ std::string Lexer::convertCharPtr(const char *input)
     return temp;
 }
 
+void Lexer::processCommands()
+{
+    for (unsigned i = 0; i < commandStream.size(); ++i)
+    {
+        printCommand(commandStream[i]);
+        //commandObject.run()
+    }
+    commandStream.clear();
+}
+
 #ifdef TESTINTERNAL
 
 int main()
@@ -137,9 +153,7 @@ int main()
     Lexer::instance()->addCommand(Command::DEL);
     Lexer::instance()->addCommand(Command::UPD);
 
-    Lexer::instance()->printHistory();
-
-    Lexer::instance()->resetHistory();
+    Lexer::instance()->processCommands();
 
     Lexer::instance()->printHistory();
 }

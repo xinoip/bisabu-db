@@ -30,9 +30,8 @@ public:
     // just print the name of command from commandHistory
     // after printing pop the command from commandHistory
     // in the future we will call command objects run method
-    // void processCommand();
+    void processCommands();
 
-    // change the name of commandHistory to commandStream
 
 private:
     Lexer() {}
@@ -44,8 +43,11 @@ private:
     Command lastCommand;
     std::vector<Command> commandStream;
 
-    std::string convertCharPtr(const char *input);
     std::vector<std::string> inputHistory;
+
+    //helpers
+    std::string convertCharPtr(const char *input);
+    void printCommand(const Command c);
 };
 
 #endif
