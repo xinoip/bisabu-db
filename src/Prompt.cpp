@@ -40,6 +40,23 @@ void Prompt::greet() {
     
 }
 
+//Print closing message
+void Prompt::closing() {
+
+    std::string closeMessage[6] = {
+        "  _____        __     __         _ ",
+        " / ____|       \\ \\   / /        | |",
+        "| (___   ___  __\\ \\_/ /__  _   _| |",
+        " \\___ \\ / _ \\/ _ \\   / _ \\| | | | |",
+        " ____) |  __/  __/| | (_) | |_| |_|",
+        "|_____/ \\___|\\___||_|\\___/ \\__,_(_)"
+    };
+     for (int i = 0; i < 6; i++)
+    {
+        std::cout << closeMessage[i] << std::endl;
+    }
+}
+
 
 //Getting last input
 void Prompt::getInput()                 

@@ -10,6 +10,7 @@ public:
 
     void print();               //Print prompt
     void greet();               //Print closing message
+    void closing();             //Print greeting message
     void getInput();            //Getting last input
     std::string sendInput();    //Sending input to Lexer object
 
