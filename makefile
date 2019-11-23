@@ -5,8 +5,8 @@ CC = g++
 COMPILER_FLAGS = -Wall -Wextra
 LINKER_FLAGS =
 
-OBJ_NAME = app
-TEST_NAME = test
+OBJ_NAME = ./build/app
+TEST_NAME = ./build/test
 
 all : $(SRC)
 	$(CC) $(SRC) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)

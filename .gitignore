@@ -1,12 +1,5 @@
-#object files
-*.o
-*.lo
-*.obj
-
-#executables
-*.exe
-*.out
-*.app
-
 #vscode
 .vscode/
+
+#build
+build/
