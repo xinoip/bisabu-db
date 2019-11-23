@@ -23,6 +23,24 @@ void Prompt::print()
     std::cout << "status : text\n";
     std::cout << ">";
 }
+
+//Print greeting message
+void Prompt::greet() {
+    std::string greetingMessage [5]={
+    "              | |                         ",
+    " __      _____| | ___ ___  _ __ ___   ___ " ,
+    " \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ ",
+    "  \\ V  V /  __/ | (_| (_) | | | | | |  __/ ",
+    "   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| "
+    };
+    for (int i = 0; i <5; i++)
+    {
+        std::cout << greetingMessage[i] << std::endl;
+    }
+    
+}
+
+
 //Getting last input
 void Prompt::getInput()                 
 {

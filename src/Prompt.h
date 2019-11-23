@@ -9,6 +9,7 @@ public:
     static Prompt *instance();
 
     void print();               //Print prompt
+    void greet();               //Print closing message
     void getInput();            //Getting last input
     std::string sendInput();    //Sending input to Lexer object
 
