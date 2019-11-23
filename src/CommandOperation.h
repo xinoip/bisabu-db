@@ -5,8 +5,9 @@
 #include <vector>
 #include <string>
 
-class CommandOperation{
-    public:
+class CommandOperation
+{
+public:
     // no constructor yet.
     // no copy constructor yet.
     // no assignment opr yet.
@@ -14,15 +15,10 @@ class CommandOperation{
 
     void runOperation();
 
-
-    private:
-
+private:
     Command oprType;
     std::vector<std::string> tokens;
     unsigned int tokenCount;
-
-
 };
-
 
 #endif
