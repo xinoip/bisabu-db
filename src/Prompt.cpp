@@ -57,8 +57,12 @@ void Prompt::closing() {
     }
 }
 
+//Getter for lastInput
+std::string Prompt::getLastInput() {
+    return lastInput;
+}
 
-//Getting last input
+//Scan last input
 void Prompt::getInput()                 
 {
     getline(std::cin, lastInput);
