@@ -42,7 +42,7 @@ void Lexer::processInputHistory(const char token)
 
     for (unsigned i = 0; i < inputHistory.size(); ++i)
     {
-        tokenizeInput(inputHistory[i], token);
+        processInput(tokenizeInput(inputHistory[i], token));
     }
 
     inputHistory.clear();
