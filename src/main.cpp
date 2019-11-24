@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     Prompt *prompt = Prompt::instance();
     Lexer *lexer = Lexer::instance();
 
-    //prompt->greet();
+    prompt->greet();
 
     int i = 5;
     while (i < 10)
@@ -34,8 +34,11 @@ int main(int argc, char const *argv[])
         prompt->getInput();
         prompt->sendInput();
         lexer->processInputHistory(' ');
+        lexer->processCommands();
         i++;
     }
+
+    prompt->closing();
 
     /////////////////////
     // RUN TIME END   
