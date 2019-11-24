@@ -43,6 +43,7 @@ void Lexer::processInputHistory(const char token)
     for (unsigned i = 0; i < inputHistory.size(); ++i)
     {
         processInput(tokenizeInput(inputHistory[i], token));
+        // add in future : if returns false inform the user.
     }
 
     inputHistory.clear();
@@ -135,21 +136,19 @@ void Lexer::processCommands()
 
 // NOTE: this function is really primitive version.
 // I assumed that there might be more than one command in the given vector. I might be wrong.
-// v1.0
+// v1.1
 bool Lexer::processInput(const std::vector<std::string> &v)
 {
-    std::cout << v[v.size() - 1] << std::endl;
 
-    for (unsigned i = 0; i < v.size(); ++i)
+    for (auto itr = tempCommandList.begin(); itr != tempCommandList.end(); ++itr)
     {
-        for (auto itr = tempCommandList.begin(); itr != tempCommandList.end(); ++itr)
+        if (v[0] == itr->first)
         {
-            if (v[i] == itr->first)
-            {
-                commandStream.push_back(itr->second);
-            }
+            commandStream.push_back(itr->second);
+            return true;
         }
     }
+    return false;
 }
 
 Lexer::Lexer()
