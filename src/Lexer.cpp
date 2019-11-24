@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-//#define TESTINTERNAL //uncomment to compile with test main.
+#define TESTINTERNAL //uncomment to compile with test main.
 
 Lexer *Lexer::instancePtr = nullptr;
 
@@ -86,7 +86,7 @@ void Lexer::printHistory()
     }
 }
 
-void Lexer::printCommand(const Command c)
+void Lexer::printCommand(const Command c) const
 {
 
     switch (c)
@@ -116,7 +116,7 @@ bool Lexer::addCommand(const Command c)
     return true;
 }
 
-std::string Lexer::convertCharPtr(const char *input)
+std::string Lexer::convertCharPtr(const char *input) const
 {
     std::string temp = "";
 
@@ -139,23 +139,27 @@ void Lexer::processCommands()
     commandStream.clear();
 }
 
+Lexer::Lexer(){
+    //used map for now, might change the structure or command names later.
+    tempCommandList.insert(std::pair<std::string,Command>("insert",Command::INS));
+    tempCommandList.insert(std::pair<std::string,Command>("delete",Command::DEL));
+    tempCommandList.insert(std::pair<std::string,Command>("select",Command::SEL));
+    tempCommandList.insert(std::pair<std::string,Command>("update",Command::UPD));
+
+    for(auto itr = tempCommandList.begin(); itr != tempCommandList.end();++itr){
+        std::cout << itr->first << " ";
+        printCommand(itr->second);
+    }
+
+}
+
 #ifdef TESTINTERNAL
 
 int main()
 {
 
-    Lexer::instance()->tokenizeInput("Abdullah", 'u');
+    Lexer::instance();
 
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::SEL);
-    Lexer::instance()->addCommand(Command::INS);
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::UPD);
-
-    Lexer::instance()->processCommands();
-
-    Lexer::instance()->printHistory();
 }
 
 #endif
