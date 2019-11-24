@@ -119,7 +119,6 @@ std::string Lexer::convertCharPtr(const char *input) const
     {
         temp += input[i];
     }
-    temp += '\0';
 
     return temp;
 }
