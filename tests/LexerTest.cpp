@@ -21,16 +21,16 @@ Test LexerTest()
             return false;
 
         std::string longString(10000, 'a');
-        v = l->processInput(longString, 'a');
+        v = l->tokenizeInput(longString, 'a');
         if (v.size() != 10000)
             success = false;
 
-        v = l->processInput("Burakcan Asa", ' ');
+        v = l->tokenizeInput("Burakcan Asa", ' ');
         if (v.size() != 2)
             success = false;
         std::cout << "***************" << std::endl;
 
-        v = l->processInput("Burakcan Asa", 'e');
+        v = l->tokenizeInput("Burakcan Asa", 'e');
         if (v.size() != 0)
         {
             // should enter error message
@@ -46,7 +46,7 @@ Test LexerTest()
         //problem with turkish characters
         std::cout << "***************" << std::endl;
 
-        v = l->processInput("abbc", 'b');
+        v = l->tokenizeInput("abbc", 'b');
         std::cout << v.size();
         if (v.size() != 2)
         {
