@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-#define TEST //uncomment to compile with test main.
+//#define TESTINTERNAL //uncomment to compile with test main.
 
 Lexer *Lexer::instancePtr = nullptr;
 
@@ -16,7 +16,7 @@ Lexer *Lexer::instance()
     return instancePtr;
 }
 
-std::vector<std::string> Lexer::processInput(const std::string &input, const char tokenChar)
+std::vector<std::string> Lexer::tokenizeInput(const std::string &input, const char tokenChar)
 {
     std::stringstream parser(input);
     std::string token;
@@ -24,22 +24,17 @@ std::vector<std::string> Lexer::processInput(const std::string &input, const cha
 
     while (getline(parser, token, tokenChar))
     {
-        if(token!="")
-        tokens.push_back(token);
+        if (token != "")
+            tokens.push_back(token);
     }
-
-#ifdef TEST
-    for (unsigned i = 0; i < tokens.size(); ++i)
-        std::cout << tokens[i] << std::endl;
-#endif
 
     return tokens;
 }
 
-std::vector<std::string> Lexer::processInput(const char *input, const char token)
+std::vector<std::string> Lexer::tokenizeInput(const char *input, const char token)
 {
 
-    return processInput(convertCharPtr(input), token);
+    return tokenizeInput(convertCharPtr(input), token);
 }
 
 void Lexer::processInputHistory(const char token)
@@ -47,7 +42,7 @@ void Lexer::processInputHistory(const char token)
 
     for (unsigned i = 0; i < inputHistory.size(); ++i)
     {
-        processInput(inputHistory[i], token);
+        tokenizeInput(inputHistory[i], token);
     }
 
     inputHistory.clear();
@@ -67,50 +62,56 @@ bool Lexer::pushInput(const char *input)
 
 void Lexer::resetHistory()
 {
-    commandHistory.clear();
+    commandStream.clear();
 }
 
 void Lexer::printHistory()
 {
 
-    if (commandHistory.empty())
+    if (commandStream.empty())
     {
-        std::cout << "History is empty\n";
+        std::cout << "Command stream is empty\n";
         return;
     }
 
-    for (unsigned i = 0; i < commandHistory.size(); ++i)
+    for (unsigned i = 0; i < commandStream.size(); ++i)
     {
         std::cout << "Command " << i + 1 << ":";
-        switch (commandHistory[i])
-        {
-        case Command::SEL:
-            std::cout << "SELECT";
-            break;
-
-        case Command::INS:
-            std::cout << "INSERT";
-            break;
-
-        case Command::UPD:
-            std::cout << "UPDATE";
-            break;
-
-        case Command::DEL:
-            std::cout << "DELETE";
-            break;
-        }
-        std::cout << std::endl;
+        printCommand(commandStream[i]);
     }
+}
+
+void Lexer::printCommand(const Command c) const
+{
+
+    switch (c)
+    {
+    case Command::SEL:
+        std::cout << "SELECT";
+        break;
+
+    case Command::INS:
+        std::cout << "INSERT";
+        break;
+
+    case Command::UPD:
+        std::cout << "UPDATE";
+        break;
+
+    case Command::DEL:
+        std::cout << "DELETE";
+        break;
+    }
+    std::cout << std::endl;
 }
 
 bool Lexer::addCommand(const Command c)
 {
-    commandHistory.push_back(c);
+    commandStream.push_back(c);
     return true;
 }
 
-std::string Lexer::convertCharPtr(const char *input)
+std::string Lexer::convertCharPtr(const char *input) const
 {
     std::string temp = "";
 
@@ -118,9 +119,46 @@ std::string Lexer::convertCharPtr(const char *input)
     {
         temp += input[i];
     }
-    temp += '\0';
 
     return temp;
+}
+
+void Lexer::processCommands()
+{
+    for (unsigned i = 0; i < commandStream.size(); ++i)
+    {
+        printCommand(commandStream[i]);
+        //commandObject.run()
+    }
+    commandStream.clear();
+}
+
+// NOTE: this function is really primitive version.
+// I assumed that there might be more than one command in the given vector. I might be wrong.
+// v1.0
+bool Lexer::processInput(const std::vector<std::string> &v)
+{
+    std::cout << v[v.size() - 1] << std::endl;
+
+    for (unsigned i = 0; i < v.size(); ++i)
+    {
+        for (auto itr = tempCommandList.begin(); itr != tempCommandList.end(); ++itr)
+        {
+            if (v[i] == itr->first)
+            {
+                commandStream.push_back(itr->second);
+            }
+        }
+    }
+}
+
+Lexer::Lexer()
+{
+    //used map for now, might change the structure or command names later.
+    tempCommandList.insert(std::pair<std::string, Command>("insert", Command::INS));
+    tempCommandList.insert(std::pair<std::string, Command>("delete", Command::DEL));
+    tempCommandList.insert(std::pair<std::string, Command>("select", Command::SEL));
+    tempCommandList.insert(std::pair<std::string, Command>("update", Command::UPD));
 }
 
 #ifdef TESTINTERNAL
@@ -128,20 +166,9 @@ std::string Lexer::convertCharPtr(const char *input)
 int main()
 {
 
-    Lexer::instance()->processInput("Abdullah", 'u');
-
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::SEL);
-    Lexer::instance()->addCommand(Command::INS);
-    Lexer::instance()->addCommand(Command::DEL);
-    Lexer::instance()->addCommand(Command::UPD);
-
+    Lexer::instance()->processInput(Lexer::instance()->tokenizeInput("insert abdullah update kusgulu insert", ' '));
     Lexer::instance()->printHistory();
-
-    Lexer::instance()->resetHistory();
-
-    Lexer::instance()->printHistory();
+    Lexer::instance()->processCommands();
 }
 
 #endif
