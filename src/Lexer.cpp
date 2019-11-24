@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 
-#define TESTINTERNAL //uncomment to compile with test main.
+//#define TESTINTERNAL //uncomment to compile with test main.
 
 Lexer *Lexer::instancePtr = nullptr;
 
@@ -27,11 +27,6 @@ std::vector<std::string> Lexer::tokenizeInput(const std::string &input, const ch
         if (token != "")
             tokens.push_back(token);
     }
-
-#ifdef TESTINTERNAL
-    for (unsigned i = 0; i < tokens.size(); ++i)
-        std::cout << tokens[i] << std::endl;
-#endif
 
     return tokens;
 }
@@ -139,18 +134,32 @@ void Lexer::processCommands()
     commandStream.clear();
 }
 
-Lexer::Lexer(){
-    //used map for now, might change the structure or command names later.
-    tempCommandList.insert(std::pair<std::string,Command>("insert",Command::INS));
-    tempCommandList.insert(std::pair<std::string,Command>("delete",Command::DEL));
-    tempCommandList.insert(std::pair<std::string,Command>("select",Command::SEL));
-    tempCommandList.insert(std::pair<std::string,Command>("update",Command::UPD));
+// NOTE: this function is really primitive version.
+// I assumed that there might be more than one command in the given vector. I might be wrong.
+// v1.0
+bool Lexer::processInput(const std::vector<std::string> &v)
+{
+    std::cout << v[v.size() - 1] << std::endl;
 
-    for(auto itr = tempCommandList.begin(); itr != tempCommandList.end();++itr){
-        std::cout << itr->first << " ";
-        printCommand(itr->second);
+    for (unsigned i = 0; i < v.size(); ++i)
+    {
+        for (auto itr = tempCommandList.begin(); itr != tempCommandList.end(); ++itr)
+        {
+            if (v[i] == itr->first)
+            {
+                commandStream.push_back(itr->second);
+            }
+        }
     }
+}
 
+Lexer::Lexer()
+{
+    //used map for now, might change the structure or command names later.
+    tempCommandList.insert(std::pair<std::string, Command>("insert", Command::INS));
+    tempCommandList.insert(std::pair<std::string, Command>("delete", Command::DEL));
+    tempCommandList.insert(std::pair<std::string, Command>("select", Command::SEL));
+    tempCommandList.insert(std::pair<std::string, Command>("update", Command::UPD));
 }
 
 #ifdef TESTINTERNAL
@@ -158,8 +167,9 @@ Lexer::Lexer(){
 int main()
 {
 
-    Lexer::instance();
-
+    Lexer::instance()->processInput(Lexer::instance()->tokenizeInput("insert abdullah update kusgulu insert", ' '));
+    Lexer::instance()->printHistory();
+    Lexer::instance()->processCommands();
 }
 
 #endif

@@ -6,7 +6,6 @@
 #include <string>
 #include <map>
 
-
 class Lexer
 {
 public:
@@ -27,13 +26,12 @@ public:
     // need to implement these
     // process and add the correct command to commandHistory
     // for now if you add successfully just print the name of command
-    bool processInput(std::vector<std::string> v);
+    bool processInput(const std::vector<std::string> &v);
 
     // just print the name of command from commandHistory
     // after printing pop the command from commandHistory
     // in the future we will call command objects run method
     void processCommands();
-
 
 private:
     Lexer();
@@ -46,9 +44,8 @@ private:
     Command lastCommand;
     std::vector<Command> commandStream;
 
-
     std::vector<std::string> inputHistory;
-    std::map<std::string,Command> tempCommandList;
+    std::map<std::string, Command> tempCommandList;
 
     //helpers
     std::string convertCharPtr(const char *input) const;
