@@ -5,33 +5,81 @@
 
 Prompt *Prompt::instancePtr = nullptr;
 
-Prompt *Prompt::instance()
+//Instance pointer returning function for provide creating
+//only one Prompt object
+Prompt *Prompt::instance()              
+                                        
 {
-    if (!instancePtr)
+    if (!instancePtr)                   
     {
         instancePtr = new Prompt;
     }
 
     return instancePtr;
 }
-void Prompt::print()
+//Print prompt
+void Prompt::print()                    
 {
     std::cout << "status : text\n";
     std::cout << ">";
 }
-void Prompt::getInput()
+
+//Print greeting message
+void Prompt::greet() {
+    std::string greetingMessage [5]={
+    "              | |                         ",
+    " __      _____| | ___ ___  _ __ ___   ___ " ,
+    " \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ ",
+    "  \\ V  V /  __/ | (_| (_) | | | | | |  __/ ",
+    "   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| "
+    };
+    for (int i = 0; i <5; i++)
+    {
+        std::cout << greetingMessage[i] << std::endl;
+    }
+    
+}
+
+//Print closing message
+void Prompt::closing() {
+
+    std::string closeMessage[6] = {
+        "  _____        __     __         _ ",
+        " / ____|       \\ \\   / /        | |",
+        "| (___   ___  __\\ \\_/ /__  _   _| |",
+        " \\___ \\ / _ \\/ _ \\   / _ \\| | | | |",
+        " ____) |  __/  __/| | (_) | |_| |_|",
+        "|_____/ \\___|\\___||_|\\___/ \\__,_(_)"
+    };
+     for (int i = 0; i < 6; i++)
+    {
+        std::cout << closeMessage[i] << std::endl;
+    }
+}
+
+//Getter for lastInput
+std::string Prompt::getLastInput() {
+    return lastInput;
+}
+
+//Scan last input
+void Prompt::getInput()                 
 {
     getline(std::cin, lastInput);
-    deleteWhitespace(); //deleting whitespaces from lastInput variable(it can be modified)
-                        //as deleting whitespaces for any strings
+    deleteWhitespace(); 
+                        
 }
-std::string Prompt::sendInput()
+//Sending lastInput to Lexer object
+std::string Prompt::sendInput()         
 {
     Lexer::instance()->pushInput(lastInput);
     return lastInput;
 }
-const std::string Prompt::deleteWhitespace()
-{
+
+//Deleting whitespaces from lastInput variable(it can be modified)
+//as deleting whitespaces for any strings
+const std::string Prompt::deleteWhitespace()    
+{                                               
     while (lastInput[lastInput.size() - 1] == ' ')
     {
         lastInput.pop_back();

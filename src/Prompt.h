@@ -8,17 +8,20 @@ class Prompt
 public:
     static Prompt *instance();
 
-    void print();
-    void getInput();
-    std::string sendInput();
+    void print();               //Print prompt
+    void greet();               //Print closing message
+    void closing();             //Print greeting message
+    std::string getLastInput();
+    void getInput();            //Getting last input
+    std::string sendInput();    //Sending input to Lexer object
 
 private:
     Prompt() {}
     Prompt(Prompt &);
     Prompt &operator=(const Prompt &);
     static Prompt *instancePtr;
-    const std::string deleteWhitespace();
-
+    const std::string deleteWhitespace();   //Deleting whitespaces from lastInput variable(it can be modified)
+                                            //as deleting whitespaces for any strings
     std::string text;
     std::string status;
     std::string lastInput;
