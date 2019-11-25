@@ -42,7 +42,10 @@ void Lexer::processInputHistory(const char token)
 
     for (unsigned i = 0; i < inputHistory.size(); ++i)
     {
-        processInput(tokenizeInput(inputHistory[i], token));
+        if (inputHistory[i].size() > 0)
+        { // fix by pionix for empty inputs
+            processInput(tokenizeInput(inputHistory[i], token));
+        }
         // add in future : if returns false inform the user.
     }
 
