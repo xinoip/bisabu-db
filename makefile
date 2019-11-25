@@ -19,7 +19,7 @@ TEST_NAME = ./build/test
 all : $(SRC)
 	if [ ! -d "$(BUILD_DIR)" ]; then echo "Creating build directory." && mkdir $(BUILD_DIR);  fi; echo "Build directory exists, building project.";
 	echo "Building project."
-	$(CC) $(SRC) $(MAIN) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	$(CC) $(SRC) $(MAIN) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME) -g
 
 test : $(SRC) $(TESTS)
 	if [ ! -d "$(BUILD_DIR)" ]; then echo "Creating build directory." && mkdir $(BUILD_DIR);  fi; echo "Build directory exists, building project.";
