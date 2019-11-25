@@ -7,6 +7,7 @@ int main()
         // call tests here
         DummyTest(),
         LexerTest(),
+        PromptTest()
     };
 
     ////////////////////
