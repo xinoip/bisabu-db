@@ -6,52 +6,53 @@
 #include <string>
 #include <vector>
 
+using std::cout;
+using std::endl;
+
 Test LexerTest()
 {
     return Test([]() {
-        // process input wont print anything
-        // change tests accordingly
-
+        // For the tests
         std::vector<std::string> v;
         Lexer *l = Lexer::instance();
 
+        // If all tests are true than succes is true.
         bool success = true;
 
+        // If the pointer is NULL return false.
         if (l == NULL)
             return false;
 
         std::string longString(10000, 'a');
         v = l->tokenizeInput(longString, 'a');
         if (v.size() != 10000)
-            success = false;
-
-        v = l->tokenizeInput("Burakcan Asa", ' ');
-        if (v.size() != 2)
-            success = false;
-        std::cout << "***************" << std::endl;
-
-        v = l->tokenizeInput("Burakcan Asa", 'e');
-        if (v.size() != 0)
         {
-            // should enter error message
+            cout << "Long string separation error." << endl;
             success = false;
         }
-        std::cout << "***************" << std::endl;
 
-        // note by pion
-        // this is multi-char constant
-        // we might not need to handle this
-        // right now it has overflow so don't test it
-        //v = l->processInput("Öküz Sümük", 'ü');
-        //problem with turkish characters
-        std::cout << "***************" << std::endl;
-
-        v = l->tokenizeInput("abbc", 'b');
-        std::cout << v.size();
+        // It must return Burakcan and Asa in the string vector.
+        v = l->tokenizeInput("Burakcan Asa", ' ');
         if (v.size() != 2)
         {
+            cout << "String separation error." << endl;
             success = false;
-            // problem in consecutive chars, it creates 3 substrings
+        }
+
+        // If given char is not in the string then it must return string itself.
+        v = l->tokenizeInput("Burakcan Asa", 'e');
+        if (v.size() != 1)
+        {
+            cout << "Error while searching char in string." << endl;
+            success = false;
+        }
+        
+        // If user enter a string within consecutive chars like abbc, it must return a and c.
+        v = l->tokenizeInput("abbc", 'b');
+        if (v.size() != 2)
+        {
+            cout << "String separation not working in consecutive chars." << endl;
+            success = false;
         }
 
         //////////////////////////////////////
